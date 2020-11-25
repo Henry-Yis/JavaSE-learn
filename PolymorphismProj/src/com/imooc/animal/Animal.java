@@ -20,10 +20,13 @@ public class Animal {
         this.month = month;
     }
 
+    public static void say(){
+        System.out.println("动物间打招呼");
+    }
+
     public void eat(){
         System.out.println("动物都有吃东西的能力");
     }
-
 
     public String getName() {
         return name;
