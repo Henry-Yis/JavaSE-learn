@@ -1,4 +1,4 @@
-package cn.itcast.learn.collection.demo;
+package cn.itcast.learn.collection;
 
 import java.util.ArrayList;
 import java.util.Collection;
