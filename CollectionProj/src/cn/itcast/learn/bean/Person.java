@@ -1,5 +1,7 @@
 package cn.itcast.learn.bean;
 
+import java.util.Objects;
+
 /**
  * @Description TODO
  * @Author yishuai
@@ -12,6 +14,20 @@ public class Person {
     private int age;
 
     public Person() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                name.equals(person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 
     public Person(String name, int age) {
@@ -34,4 +50,5 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
+
 }
