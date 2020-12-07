@@ -9,16 +9,22 @@ import cn.itcast.learn.bean.Demo;
  **/
 public class ThreadDemo2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 //        Thread t1 = new Thread();
 
         Demo d1 = new Demo("张三");
         Demo d2 = new Demo("tom");
 
-        d1.run();
-        System.out.println("haha");
-        d2.run();
+       d1.start();
+       Thread.sleep(1000);
+       d2.start();
+
+//       System.out.println(4/0);
+
+       for(int x=0; x<20; x++){
+           System.out.println("over..." + Thread.currentThread().getName());
+       }
 
     }
 
