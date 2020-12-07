@@ -28,27 +28,48 @@ package cn.itcast.learn.bean;
  * 同步的弊端：相对降低了效率，因为同步外的线程都会判断同步锁。
  *
  * 同步的前提：同步中必须有多个线程并使用同一个锁。
- *
- *
+ */
+
+/**
+ * 静态的同步函数使用的锁是 该函数所属字节码文件对象，可以用getClass方法获取，也可以用当前 类名.class 表示。
  */
 public class Ticket implements Runnable{
 
-    private int num = 100;
+    private static int num = 100;
 
     Object obj = new Object();
 
+    public boolean flag = true;
+
     public void run() {
-        while (true){
-            synchronized (obj){
-                if (num > 0) {
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+        if(flag){
+            while (true){
+                synchronized (Ticket.class){
+                    if (num > 0) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println(Thread.currentThread().getName() + "...obj...." + num--);
                     }
-                    System.out.println(Thread.currentThread().getName() + "...sale...." + num--);
                 }
             }
+        } else {
+            while (true){
+                this.show();
+            }
+        }
+    }
+
+    public static synchronized void show(){
+        if(num > 0){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName() + "...function...." + num--);
         }
     }
 
