@@ -33,6 +33,10 @@ package cn.itcast.learn.bean;
 /**
  * 静态的同步函数使用的锁是 该函数所属字节码文件对象，可以用getClass方法获取，也可以用当前 类名.class 表示。
  */
+
+/**
+ * 死锁：常见情景之一：同步的嵌套
+ */
 public class Ticket implements Runnable{
 
     private static int num = 100;
