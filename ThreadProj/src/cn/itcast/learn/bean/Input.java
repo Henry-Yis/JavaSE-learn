@@ -19,27 +19,13 @@ public class Input implements Runnable {
         int x = 0;
 
         while (true){
-            synchronized (r) {
-                if(r.flag){
-                    try {
-                        r.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                if (x == 0) {
-                    r.name = "mike";
-                    r.sex = "nan";
-                } else {
-                    r.name = "丽丽";
-                    r.sex = "女女女女女";
-                }
-                r.flag = true;
-                r.notify();
+            if (x == 0) {
+               r.set("mike","nan");
+            } else {
+                r.set("丽丽","女女女女");
             }
             x = (x + 1) % 2;
-            System.out.println("in---" + r.name + "..." + r.sex);
+
         }
     }
 }

@@ -7,8 +7,33 @@ package cn.itcast.learn.bean;
  **/
 public class Resource {
 
-    String name;
-    String sex;
-    boolean flag = false;
+    private String name;
+    private String sex;
+    private boolean flag = false;
 
+    public synchronized void set(String name, String sex){
+        if (flag)
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        this.name = name;
+        this.sex = sex;
+//        System.out.println("in----" + name + "..." + sex);
+        flag = true;
+        this.notify();
+    }
+
+     public synchronized void out(){
+        if(!flag)
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+         System.out.println("out====" + name + "..." + sex);
+            flag = false;
+            notify();
+     }
 }
