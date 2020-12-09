@@ -15,8 +15,9 @@ public class Producer implements Runnable {
 
     @Override
     public void run() {
-        while (true)
+        while (true) {
             r.set("烤鸭");
+        }
     }
 
 }

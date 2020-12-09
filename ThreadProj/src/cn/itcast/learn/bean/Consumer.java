@@ -15,7 +15,8 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        while (true)
+        while (true) {
             r.out();
+        }
     }
 }
